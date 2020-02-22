@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build hello world",
+            "type": "shell",
+            "command": "gcc",
+            "args": ["-g", "-w", "${fileDirname}\\${fileBasename}", "-o", "${fileDirname}\\${fileBasenameNoExtension}.exe"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
