@@ -2,10 +2,25 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build hello world",
+            "label": "C++",
             "type": "shell",
-            "command": "gcc",
-            "args": ["-g", "-w", "${fileDirname}\\${fileBasename}", "-o", "${fileDirname}\\${fileBasenameNoExtension}.exe"],
+            "command": "g++",
+            "args": ["-g", "-w", "${fileDirname}/${fileBasename}", "-o", "${fileDirname}/${fileBasenameNoExtension}.exe"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "C",
+            "type": "process",
+            "command": "C:\\Program Files (x86)\\Dev-Cpp\\MinGW64\\bin\\gcc.exe",
+            "args": [
+                "-g",
+                "${fileDirname}/${fileBasename}", 
+                "-o", 
+                "${fileDirname}/${fileBasenameNoExtension}.exe"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
