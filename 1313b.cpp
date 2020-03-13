@@ -1,11 +1,13 @@
 /*
 Code by b21
-Time: 21:42 Mon 24/02/2020
+Time: 17:06 Sun 23/02/2020
 */
 
 #include <bits/stdc++.h>
 
 using namespace std;
+#define int long long
+
 
 const int mn = 1 * (int)(1e5) + 10;
 const int mod = 1 * (int)(1e9) + 7;
@@ -24,10 +26,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("1313b.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("1313b.inp", "r", stdin);
+        freopen("1313b.out", "w", stdout);
     }
 }
 
@@ -59,14 +61,20 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
-
 
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    int n, a, b;
+    cin >> n >> a >> b;
+    int sol = 0;
+    if (a + b <= n) sol = 1;
+    else {
+        int x = n - (a + b + 1 - n);
+        x = min (x, n - 1);
+        x = max (x, 0ll);
+        sol = n - x;
+    }
+    cout << sol << " " << min (a + b - 1, n) << "\n";
 }
 
 void solve()
@@ -82,7 +90,7 @@ void print_result()
 main()
 {
     docfile();
-    //cin>>ntest;
+    cin>>ntest;
     for (tt = 1; tt <= ntest; ++ tt)
     {
         enter();

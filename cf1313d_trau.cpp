@@ -1,6 +1,6 @@
 /*
 Code by b21
-Time: 21:42 Mon 24/02/2020
+Time: 16:46 Fri 28/02/2020
 */
 
 #include <bits/stdc++.h>
@@ -11,7 +11,7 @@ const int mn = 1 * (int)(1e5) + 10;
 const int mod = 1 * (int)(1e9) + 7;
 const int mm = 1 * (int)(1e3) + 10;
 const int base = 1 * (int)(1e9);
-const bool aNs = 0;
+const bool aNs = 1;
 
 int tt, ntest = 1;
 void docfile()
@@ -24,10 +24,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("cf1313d_trau.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("cf1313d_trau.inp", "r", stdin);
+        freopen("cf1313d_trau.out", "w", stdout);
     }
 }
 
@@ -59,14 +59,40 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
-
+int l[mn], r[mn], s[110];
 
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    int n, m, k;
+    cin >> n >> m >> k;
+    vector<int> v;
+    for (int i = 0; i < n; ++ i) 
+    {
+        cin >> l[i] >> r[i];
+    }
+    int sol = 0;
+    for (int i = 0; i < (1 << n); ++ i) {
+        memset (s, 0, sizeof (s));
+        for (int j = 0; j < n; ++ j)
+        if ((i >> j) & 1)
+        {
+            ++ s[l[j]];
+            -- s[r[j] + 1];
+        }
+        int ma = 0;
+        for (int i = 1; i <= m + 1; ++ i)
+        {
+            s[i] += s[i - 1];
+            if (s[i] % 2) ++ ma;
+        }
+        // if (ma == 86)
+        // {
+        //     for (int j = 0; j < n; ++ j)
+        //     if ((i >> j) & 1) cout << j << "\n";
+        // }
+        sol = max (sol, ma);
+    }
+    cout << sol;
 }
 
 void solve()

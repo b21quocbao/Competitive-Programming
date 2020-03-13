@@ -1,7 +1,7 @@
-/*
-Code by b21
-Time: 21:42 Mon 24/02/2020
-*/
+/**
+ *	 Code by b21
+ *	 Time: 20:56 Thu 12/03/2020
+**/
 
 #include <bits/stdc++.h>
 
@@ -24,10 +24,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("1324e.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("1324e.inp", "r", stdin);
+        freopen("1324e.out", "w", stdout);
     }
 }
 
@@ -59,14 +59,29 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
-
+int f[2 * mm][2 * mm];
+int a[2 * mm];
 
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    int n, h, l, r;
+    cin >> n >> h >> l >> r;
+    memset (f, - 1, sizeof (f));
+    f[0][0] = 0;
+    int sol = 0;
+    for (int i = 1; i <= n; ++ i)
+    {
+        cin >> a[i];
+        for (int j = 0; j < h; ++ j)
+        if (f[i - 1][j] != - 1)
+        for (int k = - 1; k <= 0; ++ k)
+        {
+            int x = (j + a[i] + k) % h;
+            f[i][x] = max (f[i][x], f[i - 1][j] + (x >= l && x <= r));
+            if (i == n) sol = max (sol, f[i][x]);
+        }
+    }
+    cout << sol;
 }
 
 void solve()

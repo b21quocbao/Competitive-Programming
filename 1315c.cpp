@@ -1,6 +1,6 @@
 /*
 Code by b21
-Time: 21:42 Mon 24/02/2020
+Time: 16:35 Sat 29/02/2020
 */
 
 #include <bits/stdc++.h>
@@ -24,10 +24,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("1315c.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("1315c.inp", "r", stdin);
+        freopen("1315c.out", "w", stdout);
     }
 }
 
@@ -59,19 +59,42 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
-
+bool ok[210];
+int b[210], a[210];
 
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    int n;
+    cin >> n;
+    memset (ok, 0, sizeof (ok));
+    for (int i = 1; i <= n; ++ i)
+    {
+        cin >> b[i];
+        ok[b[i]] = 1;
+    }
+    for (int i = 1; i <= n; ++ i) {
+        a[2 * i - 1] = b[i];
+        bool Ok = 0;
+        for (int j = b[i]; j <= 2 * n; ++ j)
+        if (!ok[j]) {
+            Ok = 1;
+            ok[j] = 1;
+            a[2 * i] = j;
+            break;
+        }
+        if (!Ok) 
+        {
+            cout << - 1;
+            return;
+        }
+    }
+    for (int i = 1; i <= 2 * n; ++ i)
+    cout << a[i] << " ";
 }
 
 void solve()
 {
-
+    cout << "\n";
 }
 
 void print_result()
@@ -82,7 +105,7 @@ void print_result()
 main()
 {
     docfile();
-    //cin>>ntest;
+    cin>>ntest;
     for (tt = 1; tt <= ntest; ++ tt)
     {
         enter();

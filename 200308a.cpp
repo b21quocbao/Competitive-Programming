@@ -1,7 +1,7 @@
-/*
-Code by b21
-Time: 21:42 Mon 24/02/2020
-*/
+/**
+ *	 Code by b21
+ *	 Time: 19:58 Sun 08/03/2020
+**/
 
 #include <bits/stdc++.h>
 
@@ -24,10 +24,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("200308a.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("200308a.inp", "r", stdin);
+        freopen("200308a.out", "w", stdout);
     }
 }
 
@@ -59,14 +59,9 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
-
-
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    
 }
 
 void solve()

@@ -1,7 +1,7 @@
-/*
-Code by b21
-Time: 21:42 Mon 24/02/2020
-*/
+/**
+ *	 Code by b21
+ *	 Time: 17:50 Sat 07/03/2020
+**/
 
 #include <bits/stdc++.h>
 
@@ -11,7 +11,7 @@ const int mn = 1 * (int)(1e5) + 10;
 const int mod = 1 * (int)(1e9) + 7;
 const int mm = 1 * (int)(1e3) + 10;
 const int base = 1 * (int)(1e9);
-const bool aNs = 0;
+const bool aNs = 1;
 
 int tt, ntest = 1;
 void docfile()
@@ -24,10 +24,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("1322b_trau.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("1322b_trau.inp", "r", stdin);
+        freopen("1322b_trau.out", "w", stdout);
     }
 }
 
@@ -59,14 +59,19 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
-
+int a[mn];
 
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; ++ i)
+    cin >> a[i];
+    int sol = 0;
+    for (int i = 0; i < n; ++ i)
+    for (int j = 0; j < i; ++ j)
+    sol ^= (a[i] + a[j]);
+    cout << sol;
 }
 
 void solve()

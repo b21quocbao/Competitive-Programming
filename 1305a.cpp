@@ -1,6 +1,6 @@
 /*
 Code by b21
-Time: 21:42 Mon 24/02/2020
+Time: 21:36 Tue 03/03/2020
 */
 
 #include <bits/stdc++.h>
@@ -24,10 +24,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("1305a.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("1305a.inp", "r", stdin);
+        freopen("1305a.out", "w", stdout);
     }
 }
 
@@ -59,14 +59,25 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
-
+int a[mn], b[mn];
 
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; ++ i) {
+        cin >> a[i];
+    } for (int i = 0; i < n; ++ i) {
+        cin >> b[i];
+    }
+    sort (a, a + n);
+    sort (b, b + n);
+    for (int i = 0; i < n; ++ i)
+    cout << a[i] << " ";
+    cout << "\n";
+    for (int i = 0; i < n; ++ i)
+    cout << b[i] << " ";
+    cout << "\n";
 }
 
 void solve()
@@ -82,7 +93,7 @@ void print_result()
 main()
 {
     docfile();
-    //cin>>ntest;
+    cin>>ntest;
     for (tt = 1; tt <= ntest; ++ tt)
     {
         enter();

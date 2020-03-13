@@ -1,9 +1,10 @@
 /*
 Code by b21
-Time: 21:42 Mon 24/02/2020
+Time: 12:51 Tue 25/02/2020
 */
 
 #include <bits/stdc++.h>
+// #include<windows.h>
 
 using namespace std;
 
@@ -24,10 +25,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("chfile.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("chfile.inp", "r", stdin);
+        freopen("chfile.out", "w", stdout);
     }
 }
 
@@ -59,14 +60,21 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
-
-
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    system("cd \"C:\\Users\\Quoc Bao\\Downloads\\Others\\north-2014-tests\\north-2014-tests\\expression\\tests\\\"");
+    for (int i = 2; i <= 69; ++ i) {
+        string s = to_string(i);
+        if (s.size() == 1)
+        s = "0" + s;
+        string s0 = "mkdir TEST" + s;
+        string s1 = "move " + s + " TEST" + s + "\\" + "E.inp";
+        string s2 = "move " + s + ".a TEST" + s + "\\" + "E.out";
+        system(s0.c_str());
+        system(s1.c_str());
+        system(s2.c_str());
+        // system("mv ")
+    }
 }
 
 void solve()

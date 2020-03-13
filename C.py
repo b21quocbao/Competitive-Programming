@@ -6,14 +6,16 @@ import collections
 if os.path.isfile("test.inp"):
     sys.stdin = open("test.inp", "r")
     sys.stdout = open("test.out", "w")
-elif os.path.isfile("covui.inp"):
-    sys.stdin = open("covui.inp", "r")
-    sys.stdin = open("covui.out", "w")
+elif os.path.isfile("C.inp"):
+    sys.stdin = open("C.inp", "r")
+    sys.stdin = open("C.out", "w")
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
-def erange (a, b):
-    return range (a, b + 1)
-ntest = 100
+def erange (a, b, x = 1):
+    return range (a, b + 1, x)
+ntest = 1
 #ntest = int(input())
 for itest in erange(1, ntest):
-    print ("PC", end = "")
+    n = input()
+    for i in range (n):
+        

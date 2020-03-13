@@ -1,6 +1,6 @@
 /*
 Code by b21
-Time: 21:42 Mon 24/02/2020
+Time: 19:03 Sun 01/03/2020
 */
 
 #include <bits/stdc++.h>
@@ -24,10 +24,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("abc157_b.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("abc157_b.inp", "r", stdin);
+        freopen("abc157_b.out", "w", stdout);
     }
 }
 
@@ -59,14 +59,41 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
-
+int a[5][5], ok[5][5];
 
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    for (int i = 0; i < 3; ++ i)
+    for (int j = 0; j < 3; ++ j)
+    cin >> a[i][j];
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; ++ i) {
+        int x;
+        cin >> x;
+        for (int i = 0; i < 3; ++ i)
+        for (int j = 0; j < 3; ++ j)
+        if (a[i][j] == x)
+        ok[i][j] = 1;
+    }
+    int sol = 0;
+    for (int i = 0; i < 3; ++ i)
+    {
+        int s = 0;
+        for (int j = 0; j < 3; ++ j)
+        s += ok[i][j];
+        if (s == 3) sol = 1;
+    }
+    for (int i = 0; i < 3; ++ i)
+    {
+        int s = 0;
+        for (int j = 0; j < 3; ++ j)
+        s += ok[j][i];
+        if (s == 3) sol = 1;
+    }
+    if (ok[0][0] && ok[1][1] && ok[2][2]) sol = 1;
+    if (ok[0][2] && ok[1][1] && ok[2][0]) sol = 1;
+    cout << (sol ? "Yes" : "No");
 }
 
 void solve()

@@ -1,13 +1,14 @@
 /*
 Code by b21
-Time: 21:42 Mon 24/02/2020
+Time: 16:27 Sun 23/02/2020
 */
 
 #include <bits/stdc++.h>
 
 using namespace std;
+#define int long long
 
-const int mn = 1 * (int)(1e5) + 10;
+const int mn = 5 * (int)(1e5) + 10;
 const int mod = 1 * (int)(1e9) + 7;
 const int mm = 1 * (int)(1e3) + 10;
 const int base = 1 * (int)(1e9);
@@ -24,10 +25,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("1313c.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("1313c.inp", "r", stdin);
+        freopen("1313c.out", "w", stdout);
     }
 }
 
@@ -59,14 +60,45 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
-
+int f[mn], g[mn], a[mn], m[mn];
 
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    int n;
+    cin >> n;
+    for (int i = 1; i <= n; ++ i)
+    cin >> m[i];
+    vector<int> v;
+    v.emplace_back(0);
+    for (int i = 1; i <= n; ++ i) {
+        while (m[i] <= m[v.back()]) v.pop_back();
+        f[i] = f[v.back()] + m[i] * (i - v.back());
+        v.emplace_back(i);
+    }
+    v.clear();
+    v.emplace_back(n + 1);
+    long long sol = 0, I = 0;
+    for (int i = n; i >= 1; -- i) {
+        while (m[i] <= m[v.back()]) v.pop_back();
+        g[i] = g[v.back()] + m[i] * (v.back() - i);
+        if (g[i] + f[i] - m[i] > sol) {
+            sol = g[i] + f[i] - m[i];
+            I = i;
+        }
+        v.emplace_back(i);
+    }
+    int mi = INT_MAX;
+    for (int i = I; i >= 1; -- i) {
+        mi = min (mi, m[i]);
+        a[i] = mi;
+    }
+    mi = INT_MAX;
+    for (int i = I; i <= n; ++ i) {
+        mi = min (mi, m[i]);
+        a[i] = mi;
+    }
+    for (int i = 1; i <= n; ++ i)
+    cout << a[i] << " ";
 }
 
 void solve()

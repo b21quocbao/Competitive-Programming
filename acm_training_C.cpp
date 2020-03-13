@@ -1,6 +1,6 @@
 /*
 Code by b21
-Time: 21:42 Mon 24/02/2020
+Time: 20:06 Sun 23/02/2020
 */
 
 #include <bits/stdc++.h>
@@ -24,10 +24,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("acm_training_C.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("acm_training_C.inp", "r", stdin);
+        freopen("acm_training_C.out", "w", stdout);
     }
 }
 
@@ -59,14 +59,26 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
-
-
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    int n;
+    cin >> n;
+    cin.ignore();
+    vector<int> v;
+    for (int i = 0; i < n; ++ i) {
+        string s;
+        getline (cin, s);
+        if (s.size() <= 6 && s[0] != '-') {
+            v.emplace_back(stoi(s));
+        }
+    }
+    sort (v.begin(), v.end());
+    for (int i = 0; i < v.size(); ++ i)
+    if (v[i] != i) {
+        cout << i;
+        return;
+    }
+    cout << v.size();
 }
 
 void solve()

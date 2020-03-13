@@ -1,13 +1,14 @@
-/*
-Code by b21
-Time: 21:42 Mon 24/02/2020
-*/
+/**
+ *	 Code by b21
+ *	 Time: 21:59 Sun 08/03/2020
+**/
 
 #include <bits/stdc++.h>
+#define int long long
 
 using namespace std;
 
-const int mn = 1 * (int)(1e5) + 10;
+const int mn = 5 * (int)(1e5) + 10;
 const int mod = 1 * (int)(1e9) + 7;
 const int mm = 1 * (int)(1e3) + 10;
 const int base = 1 * (int)(1e9);
@@ -24,10 +25,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("200308l.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("200308l.inp", "r", stdin);
+        freopen("200308l.out", "w", stdout);
     }
 }
 
@@ -59,14 +60,34 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
+bool ok[mn];
+int n, m, c[mn], d[mn], fa[mn], k[mn];
+string s[mn];
+
+
+int K (int u) {
+    if (!u) return 0;
+    if (ok[u]) return k[u];
+    ok[u] = 1;
+    k[u] += K (fa[u]);
+    return k[u];
+}
 
 
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    cin >> n >> m;
+    for (int i = 1; i <= n; ++ i)
+    cin >> s[i] >> c[i] >> d[i];
+    for (int i = 1; i <= m; ++ i)
+    cin >> fa[i] >> k[i];
+    vector<int> v;
+    for (int i = 1; i <= n; ++ i) 
+    v.emplace_back(d[i] + K (c[i]));
+    sort (v.begin(), v.end(), greater<int>());
+    v.resize(unique(v.begin(), v.end()) - v.begin());
+    for (int i = 1; i <= n; ++ i)
+    cout << s[i] << " " << lower_bound(v.begin(), v.end(), d[i] + K(c[i]), greater<int>()) - v.begin() + 1 << "\n";
 }
 
 void solve()

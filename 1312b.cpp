@@ -1,7 +1,7 @@
-/*
-Code by b21
-Time: 21:42 Mon 24/02/2020
-*/
+/**
+ *	 Code by b21
+ *	 Time: 21:32 Mon 09/03/2020
+**/
 
 #include <bits/stdc++.h>
 
@@ -24,10 +24,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("1312b.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("1312b.inp", "r", stdin);
+        freopen("1312b.out", "w", stdout);
     }
 }
 
@@ -59,14 +59,26 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
-
+int a[mn];
 
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    int n;
+    cin >> n;
+    for (int i = 1; i <= n; ++ i)
+    cin >> a[i];
+    for (int i = n; i >= 1; -- i)
+    if (a[i] == a[i + 1] - 1)
+    f[i] = f[i + 1] + 1;
+    else 
+    f[i] = 0;
+    a[0] = - 1;
+    for (int i = 1; i <= n; ++ i)
+    if (a[i] == a[i - 1] - 1)
+    g[i] = g[i - 1] + 1;
+    else
+    g[i] = 0;
+    
 }
 
 void solve()
@@ -82,7 +94,7 @@ void print_result()
 main()
 {
     docfile();
-    //cin>>ntest;
+    cin>>ntest;
     for (tt = 1; tt <= ntest; ++ tt)
     {
         enter();

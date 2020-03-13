@@ -1,4 +1,36 @@
 from __future__ import print_function
+def Ran(a, b):
+    return random.randint(a, b)
+
+# PHAI KHAI BAO TRUOC KHI SINH TEST
+# Check answer in trau file in test.ans
+# Check answer in original file in test.out
+
+fn = "1312e"
+TimeLimit = 1  #second
+python = 0
+python_trau = 0
+checker = 0
+
+def work():
+    n = Ran (1, 10)
+    print (n)
+    for i in range (n):
+        print (Ran (1, 5), end = ' ')
+
+def Checker():
+    pass
+
+
+#KET THUC KHAI BAO
+
+
+
+
+
+
+
+
 import os
 import timeit
 import random
@@ -6,20 +38,19 @@ import sys
 import filecmp
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)   
-def Ran(a, b):
-    return random.randint(a, b)
+
 def chfile(s):
     return "\"" + s + "\""
 def run():
     if (python_trau):
-        os.system ("python " + chfile(trau + ".PY"))
+        os.system ("python " + fn + "_trau" + ".PY")
     else:
-        os.system(chfile(trau + ".exe"))
+        os.system(fn + "_trau.exe")
     start = timeit.default_timer()
     if (python):
-        os.system("python " + chfile(filename + ".PY"))
+        os.system("python " + fn + ".PY")
     else:
-        os.system(chfile(filename + ".exe"))
+        os.system(fn + ".exe")
     stop = timeit.default_timer()
     return stop - start
 def cmp_lines(path_1, path_2):
@@ -33,32 +64,10 @@ def cmp_lines(path_1, path_2):
             if l1 != l2:
                 return False
     return True
-filename = os.path.dirname(os.path.realpath(__file__)) + "\\" + os.path.dirname(os.path.realpath(__file__)).split("\\")[len(os.path.dirname(os.path.realpath(__file__)).split("\\")) - 1]
-trau = os.path.dirname(os.path.realpath(__file__)) + "\\" + os.path.dirname(os.path.realpath(__file__)).split("\\")[len(os.path.dirname(os.path.realpath(__file__)).split("\\")) - 1] + "_trau"
+
 out = os.path.dirname(os.path.realpath(__file__)) + "\\" + "test.out"
 inp = os.path.dirname(os.path.realpath(__file__)) + "\\" + "test.inp"
 ans = os.path.dirname(os.path.realpath(__file__)) + "\\" + "test.ans"
-
-
-
-
-
-# PHAI KHAI BAO TRUOC KHI SINH TEST
-TimeLimit = 1  #giay
-python = 0
-python_trau = 1
-checker = 0
-
-def work():
-    pass
-
-def Checker():
-    pass
-
-
-#KET THUC KHAI BAO
-
-
 
 
 def gen():
@@ -67,7 +76,8 @@ def gen():
         sys.stdout = open(inp, "w")
         work()
         sys.stdout.close()
-        if (run() > TimeLimit):
+        x = run()
+        if (x > TimeLimit):
             eprint("TLE")
             sys.exit()
         if ((checker and (not Checker())) or ((not checker) and (not cmp_lines(out, ans)))):
@@ -77,4 +87,5 @@ def gen():
         if (cn % 25 == 0):
             eprint (cn)
 gen()
+# print(inp)
 

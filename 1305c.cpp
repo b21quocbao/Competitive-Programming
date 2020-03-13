@@ -1,13 +1,14 @@
 /*
 Code by b21
-Time: 21:42 Mon 24/02/2020
+Time: 21:41 Tue 03/03/2020
 */
 
 #include <bits/stdc++.h>
 
 using namespace std;
+#define int long long
 
-const int mn = 1 * (int)(1e5) + 10;
+const int mn = 2 * (int)(1e5) + 10;
 const int mod = 1 * (int)(1e9) + 7;
 const int mm = 1 * (int)(1e3) + 10;
 const int base = 1 * (int)(1e9);
@@ -24,10 +25,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("1305c.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("1305c.inp", "r", stdin);
+        freopen("1305c.out", "w", stdout);
     }
 }
 
@@ -59,14 +60,26 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
-
+int a[mn];
 
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    int n, m;
+    cin >> n >> m;
+    for (int i = 0; i < n; ++ i)
+    cin >> a[i];
+    if (n > m) {
+        cout << 0;
+        return;
+    }
+    long long sol = 1;
+    for (int i = 0; i < n; ++ i)
+    for (int j = 0; j < i; ++ j)
+    {
+        sol *= (abs (a[i] - a[j]) % m);
+        sol %= m;
+    }
+    cout << sol;
 }
 
 void solve()

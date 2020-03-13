@@ -1,6 +1,6 @@
 /*
 Code by b21
-Time: 21:42 Mon 24/02/2020
+Time: 16:31 Sat 29/02/2020
 */
 
 #include <bits/stdc++.h>
@@ -24,10 +24,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("1315b.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("1315b.inp", "r", stdin);
+        freopen("1315b.out", "w", stdout);
     }
 }
 
@@ -59,30 +59,41 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
-
-
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    
 }
 
 void solve()
 {
-
+    int a, b, p;
+    cin >> a >> b >> p;
+    cin.ignore();
+    string s;
+    getline (cin, s);
+    int t = 0;
+    for (int i = s.size() - 2; i >= 0; -- i) 
+    {
+        if (s[i] != s[i + 1] || i == s.size() - 2) 
+        t += (s[i] == 'A' ? a : b);
+        if (t > p) 
+        {
+            cout << i + 2;
+            return;
+        }
+    }
+    cout << 1;
 }
 
 void print_result()
 {
-
+    cout << "\n";
 }
 
 main()
 {
     docfile();
-    //cin>>ntest;
+    cin>>ntest;
     for (tt = 1; tt <= ntest; ++ tt)
     {
         enter();

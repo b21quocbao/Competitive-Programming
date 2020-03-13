@@ -1,7 +1,7 @@
-/*
-Code by b21
-Time: 21:42 Mon 24/02/2020
-*/
+/**
+ *	 Code by b21
+ *	 Time: 16:33 Sat 07/03/2020
+**/
 
 #include <bits/stdc++.h>
 
@@ -24,10 +24,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("1322a.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("1322a.inp", "r", stdin);
+        freopen("1322a.out", "w", stdout);
     }
 }
 
@@ -59,14 +59,35 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
-
-
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    int n;
+    cin >> n;
+    cin.ignore();
+    string s;
+    getline(cin, s);
+    int a = 0, b = 0;
+    for (char c : s)
+    if (c == '(') ++ a;
+    else ++ b;
+    if (a != b) {
+        cout << - 1;
+        return;
+    }
+    a = 0; b = 0;
+    int sol = 0, d = - 1;
+    for (int i = 0; i < s.size(); ++ i)
+    {
+        char c = s[i];
+        if (c == ')') ++ b;
+        else ++ a;
+        if (b > a && d == - 1) d = i;
+        if (b == a && d != - 1) {
+            sol += i - d + 1;
+            d = - 1;
+        }
+    }
+    cout << sol;
 }
 
 void solve()

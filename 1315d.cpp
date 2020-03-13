@@ -1,13 +1,15 @@
 /*
 Code by b21
-Time: 21:42 Mon 24/02/2020
+Time: 16:48 Sat 29/02/2020
 */
 
 #include <bits/stdc++.h>
 
+#define int long long
+
 using namespace std;
 
-const int mn = 1 * (int)(1e5) + 10;
+const int mn = 2 * (int)(1e5) + 10;
 const int mod = 1 * (int)(1e9) + 7;
 const int mm = 1 * (int)(1e3) + 10;
 const int base = 1 * (int)(1e9);
@@ -24,10 +26,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("1315d.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("1315d.inp", "r", stdin);
+        freopen("1315d.out", "w", stdout);
     }
 }
 
@@ -59,19 +61,41 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
-
-
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    
+}
+
+int a[mn], t[mn], id[mn];
+map<int, int> fa;
+int Fa (int n) {
+    return (fa.count (n) ? fa[n] = Fa (fa[n]) : n);
 }
 
 void solve()
 {
-
+    int n;
+    cin >> n;
+    for (int i = 1; i <= n; ++ i)
+    cin >> a[i];
+    for (int i = 1; i <= n; ++ i)
+    {
+        cin >> t[i];
+        id[i] = i;
+    }
+    sort (id + 1, id + n + 1, [](int i, int j) {
+        return t[i] > t[j];
+    });
+    long long sol = 0;
+    for (int j = 1; j <= n; ++ j) {
+        int i = id[j];
+        int x = Fa (a[i]);
+        assert (x >= a[i]);
+        sol += 1ll * t[i] * (x - a[i]);
+        a[i] = x;
+        fa[a[i]] = Fa (a[i] + 1);
+    }
+    cout << sol;
 }
 
 void print_result()

@@ -1,6 +1,6 @@
 /*
 Code by b21
-Time: 21:42 Mon 24/02/2020
+Time: 21:34 Wed 04/03/2020
 */
 
 #include <bits/stdc++.h>
@@ -24,10 +24,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("1316b.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("1316b.inp", "r", stdin);
+        freopen("1316b.out", "w", stdout);
     }
 }
 
@@ -59,19 +59,38 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
-
-
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    
 }
 
 void solve()
 {
-
+    int n;
+    string s;
+    cin >> n >> s;
+    string sol = s;
+    string s1 = s;
+    int k = 1;
+    for (int i = 1; i <= n; ++ i)
+    {
+        int cn = (n - i) + 1;
+        string S;
+        if (cn % 2 == 0)
+        S = s.substr(i - 1, n - i + 1) + s.substr(0, i - 1);
+        else
+        {
+            string s1 = s.substr(0, i - 1);
+            reverse(s1.begin(), s1.end());
+            S = s.substr(i - 1, n - i + 1) + s1;
+        }
+        if (S < sol) {
+            sol = S;
+            k = i;
+        }
+    }
+    cout << sol << "\n";
+    cout << k << "\n";
 }
 
 void print_result()
@@ -82,7 +101,7 @@ void print_result()
 main()
 {
     docfile();
-    //cin>>ntest;
+    cin>>ntest;
     for (tt = 1; tt <= ntest; ++ tt)
     {
         enter();

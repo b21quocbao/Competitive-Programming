@@ -1,14 +1,14 @@
-/*
-Code by b21
-Time: 21:42 Mon 24/02/2020
-*/
+/**
+ *	 Code by b21
+ *	 Time: 21:55 Mon 09/03/2020
+**/
 
 #include <bits/stdc++.h>
 
 using namespace std;
 
-const int mn = 1 * (int)(1e5) + 10;
-const int mod = 1 * (int)(1e9) + 7;
+const int mn = 2 * (int)(1e5) + 10;
+const long long mod = 998244353;
 const int mm = 1 * (int)(1e3) + 10;
 const int base = 1 * (int)(1e9);
 const bool aNs = 0;
@@ -24,10 +24,10 @@ void docfile()
        if (!aNs) freopen("test.out", "w", stdout);
        else freopen ("test.ans", "w", stdout);
     }
-   else if (ifstream("oixcuv.inp"))
+   else if (ifstream("1312d.inp"))
     {
-        freopen("oixcuv.inp", "r", stdin);
-        freopen("oixcuv.out", "w", stdout);
+        freopen("1312d.inp", "r", stdin);
+        freopen("1312d.out", "w", stdout);
     }
 }
 
@@ -59,14 +59,39 @@ void write (T a)
     putchar ((char)('0' + (a % 10)));
 }
 
-    char c;
+#define int long long
 
+int gt[mn];
+
+int Mu (int a, int b) {
+    return ((a * b) % mod);
+}
+
+int po (int a, int n) {
+    if (!n) return 1;
+    int A = po (a, n >> 1);
+    A = Mu (A, A);
+    return (n % 2 ? Mu (A, a) : A);
+}
+
+int C (int n, int k) {
+    return Mu (gt[n], po (Mu (gt[k], gt[n - k]), mod - 2));
+}
 
 void enter()
 {
-    string s = "abc";
-    s += c; 
-    cout << s;
+    int n, m;
+    cin >> n >> m;
+    gt[0] = 1;
+    for (int i = 1; i <= m; ++ i)
+    gt[i] = Mu (gt[i - 1], i);
+    int sol = 0;
+    for (int i = 1; i <= n - 2; ++ i)
+    {
+        sol += Mu (Mu (C (n - 2, i), C (m, n - 1)), i);
+        sol %= mod;
+    }
+    cout << sol;
 }
 
 void solve()
